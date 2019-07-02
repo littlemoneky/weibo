@@ -14,5 +14,4 @@
         </div>
     </div>
     {{ $user->name }} - {{ $user->email }}
-    {{ $user->password }}
 @stop
