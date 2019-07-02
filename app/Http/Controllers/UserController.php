@@ -7,8 +7,13 @@ use Auth;
 class UserController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth',['except' => ['create','show','store']]);
+        $this->middleware('auth',['except' => ['create','show','store','index']]);
         $this->middleware('guest',['only' => ['create']]);
+    }
+
+    public function index(){
+        $users = User::paginate(5);
+        return view('users.index', compact('users'));
     }
 
     public function create(){
