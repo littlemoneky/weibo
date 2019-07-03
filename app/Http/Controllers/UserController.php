@@ -42,7 +42,7 @@ class UserController extends Controller
     }
 
     public function edit(User $user){
-        $this->authorize('update', $user);
+        $this->authorize('edit', $user);
         return view('users.edit',compact('user'));
     }
 
@@ -64,6 +64,12 @@ class UserController extends Controller
         return redirect()->route('users.show', $user->id);
     }
 
+    public function destroy(User $user){
+        $this->authorize('destroy', $user);
+        $user->delete();
+        session()->flash('success','成功删除用户！');
+        return back();
+    }
 
 
 
